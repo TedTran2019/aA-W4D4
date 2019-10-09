@@ -1,0 +1,16 @@
+<div class='credentials'>
+	<% action = (submit == 'register' ? users_url : session_url )  %>
+	<form action="<%=action%>" method="post">
+		<%= auth_token %>
+		<div class='email'>
+			<label for="email">Email</label>
+			<input type="text" name="user[email]" id="email" value="<%=user.email%>">
+		</div>
+
+		<div class='password'>
+			<label for="password">Password</label>
+			<input type="password" name="user[password]" id="password">
+		</div>
+		<button id='cred-button' type="submit"><%= submit %></button>
+	</form>
+</div>
