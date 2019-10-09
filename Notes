@@ -1,0 +1,66 @@
+radio buttons! Same name == can only choose one
+
+helper_method or put in ApplicationHelper to use methods in view
+Have to #html_safe otherwise it's interpreted literally
+Script Content Attack -> Like a sql injection attack
+Pass in h -> alias for html_escape, so #{h(cat.name)} would be helpful
+Because somebody can make cat.name into a JS script
+Usually you want to split the html and the escaped html! Basically, escape
+anything that comes from user input.
+
+Every page loads application.html.erb, then yields
+All shared functionality!
+Secondary yield tag: <%= yield :footer%>
+Then <% content_for :footer do %> in said pages
+
+ActionMailer -> send emails from application
+1. mailer class extending ActionMailer::Base, live in app/mailers
+2. views, in app/views/[mailer_name]
+
+ex -> rails g mailer Usermailer
+mail(to: , subject: )
+To an email, subject is whatever you want.
+Starts with a default from:
+Mail method returns email object, doesn't deliver until #deliver_now is called
+
+Template for email formatted in HTML in view! Any instance variables defined in
+method will be available in view.
+Make a text version or you will be dinged for spam!
+Ex. method: welcome_email
+welcome_email.html.erb, welcome_email.text.erb
+Sending mail is slow! Eventually batch up and send emails offline!
+attachments variable present in mailer methods!
+Ie. attachments['filename.jpg'] = File.read('/path/to/filename.jpg')
+Set an option in config/environemnts/production.rb and .../development.rb so
+mailer knows base url of website
+
+letter_opener gem -> config.action_mailer.delivery_method = :letter_opener
+This makes it so instead of sending real emails, it'll simply pop open in browser.
+
+geocoder gem -> location!
+
+Everythign in app/helpers will be available in every view
+#capture method -> used to pass a lot of content into a helper
+
+content_for is also very useful for loading page-specific JS or CSS files
+
+javascript_include_tag "common"
+# => <script src="/assets/common.js"></script>
+
+stylesheet_link_tag "application"
+# => <link href="/assets/application.css" media="screen" rel="stylesheet" />
+
+Rails -> MVC, Convention Over Configuration, REST
+ActiveRecord, ActionController, ActionView, Rake, Rack, Puma
+
+Rack -> middleware that sits between Rails router and web server, receiving
+HTTP requests and generating responses using info from router
+
+Node.js -> runtime environment, install many modules then write code to
+integrate by hand
+
+----------------
+email = UserMailer.method_you_made(user)
+email.deliver -> deliver immediately, may want to use other methods to batch
+and deliver all at once offline
+config.action_mailer.delivery_method = :letter_opener
