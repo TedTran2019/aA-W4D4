@@ -1,7 +1,7 @@
 class BandsController < ApplicationController
 	before_action :ensure_signed_in
 
-	def indexs
+	def index
 		@bands = Band.all
 		render :index
 	end
