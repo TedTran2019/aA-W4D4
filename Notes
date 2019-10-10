@@ -64,3 +64,32 @@ email = UserMailer.method_you_made(user)
 email.deliver -> deliver immediately, may want to use other methods to batch
 and deliver all at once offline
 config.action_mailer.delivery_method = :letter_opener
+
+Ted Tran 5:51 PM -> aA slack
+In the W4D4 homework, in the zipped solution's seed file, there's an error.
+(Though, this error might be because I'm using Ruby 2.6.4 instead of the version
+I'm supposed to be using). birth_date: Faker::Date.between(from: 10.years.ago,
+to: Date.today) doesn't work because I think it's converted into 1 argument;
+a hash consisting of {from: 10.years.ago, to: Date.today}, while
+Faker::Date.between accepts 2 arguments. Removing the from: and to: s
+olved the issue for me. Just a heads up!
+--------------------------------------
+
+Do not use form_for in the project.
+
+Learning Goals
+Be able to build User Auth without looking at old code or demos
+Know how to nest routes
+Be able to link between different views using a tags and rails URL helpers
+Be able to trigger controller actions from views using forms and links
+Know how to check that a current user exists before displaying content
+
+To use Postman, CSRF protection has to be disabled
+
+Validation presence: true is kinda buggy when default value is false.
+
+Have to watch out in the views when the instance variable is nil! ->
+Haven't run into that problem yet, issue was due to writing indexs instead of
+index lol.
+
+<pre></pre> tag to preserve whitespace like newlines!

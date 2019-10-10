@@ -13,6 +13,11 @@
     <header>
       <h1 class='app-name'>Music App</h1>
     </header>
+    <div class="errors">
+      <% if flash[:errors] %>
+        <%= flash[:errors] %>
+      <% end %>
+    </div>
     <%= yield %>
     <div class='log-info'>
       <% if logged_in? %>
