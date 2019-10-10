@@ -1,4 +1,6 @@
 class TracksController < ApplicationController
+	before_action :ensure_signed_in
+
 	def index
 		@tracks = Track.all
 		render :index

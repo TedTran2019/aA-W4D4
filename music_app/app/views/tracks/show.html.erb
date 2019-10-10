@@ -1,5 +1,16 @@
 Track Title: <%= @track.title %> <br>
-Album Title: <%= @track.album.title %> <br>
+Album Title: <%= link_to "#{@track.album.title}", album_url(@track.album_id) %> <br>
 Track Number: <%= @track.ord %> <br>
 Bonus track?: <%= @track.bonus %> <br>
 Lyrics: <%= @track.lyrics %> <br>
+
+<form action="<%= edit_track_url %>" method="get">
+	<%= auth_token %>
+	<button type="submit">Edit</button>
+</form>
+
+<form action="<%= track_url(@track) %>" method="post">
+	<input type="hidden" name="_method" value="delete">
+	<%= auth_token %>
+	<button type="submit">Delete</button>
+</form>

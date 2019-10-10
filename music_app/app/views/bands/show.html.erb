@@ -5,3 +5,5 @@
 		<li><%= link_to "#{album.title}", album_url(album) %></li>
 	<% end %>
 </ul>
+
+<%= link_to 'Create a new album', new_band_album_url(@band.id) %>
