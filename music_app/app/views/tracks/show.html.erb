@@ -2,7 +2,7 @@ Track Title: <%= @track.title %> <br>
 Album Title: <%= link_to "#{@track.album.title}", album_url(@track.album_id) %> <br>
 Track Number: <%= @track.ord %> <br>
 Bonus track?: <%= @track.bonus %> <br>
-Lyrics: <%= @track.lyrics %> <br>
+Lyrics: <%= ugly_lyrics(@track.lyrics) %>
 Notes: <% @track.notes.includes(:user).each do |note| %>
 					<%= render 'notes/note', note: note %>
 			 <% end %>
@@ -19,3 +19,4 @@ Notes: <% @track.notes.includes(:user).each do |note| %>
 </form>
 
 <%= render 'notes/form.html.erb', track_id: @track.id %>
+
