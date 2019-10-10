@@ -1,0 +1,32 @@
+<% action = (submit == 'create' ? albums_url : album_url(album)) %>
+
+<form action="<%=action%>" method="post">
+	<% unless submit == 'create' %>
+		<input type="hidden" name="_method" value="patch">
+	<% end %>
+	<%= auth_token %>
+
+	<label for="title">Title</label>
+	<input type="text" name="album[title]" id="title" value="<%=album.title%>">
+
+	<label for="band">Band</label>
+	<select name="album[band_id]" id="band">
+		<option disabled <%= album.band_id ? '' : 'selected' %>
+		 >--PLEASE SELECT--</option>
+		<% Band.all.each do |band| %>
+			<option value="<%=band.id%>" <%= album.band_id == band.id ? 'selected' : '' %>>
+			<%= band.name %></option>
+		<% end %>
+	</select>
+
+	<label for="year">Year</label>
+	<input type="text" name="album[year]" id="year" value="<%=album.year%>">
+
+	<label for="live">Live?</label>
+	<input type="radio" name="album[live]"
+		id="live" value="true" <%= album.live == true ? 'checked' : '' %>> T
+	<input type="radio" name="album[live]"
+		id="live" value="false" <%= album.live == false ? 'checked' : '' %>> F
+
+	<button type="submit"><%= submit %></button>
+</form>

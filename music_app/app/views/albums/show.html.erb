@@ -1,0 +1,12 @@
+<%= render 'album', album: @album %>
+
+<form action="<%=edit_album_url(@album)%>" method="get">
+	<%= auth_token %>
+	<button type="submit">Edit</button>
+</form>
+
+<form action="<%=album_url(@album)%>" method="post">
+	<input type="hidden" name="_method" value="delete">
+	<%= auth_token %>
+	<button type="submit">Delete</button>
+</form>

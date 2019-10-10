@@ -1,0 +1,38 @@
+<% action = (button == 'create' ? tracks_url : track_url(track)) %>
+
+<form action="<%=action%>" method="post">
+	<% unless button == 'create' %>
+		<input type="hidden" name="_method" value="patch">
+	<% end %>
+	<%= auth_token %>
+
+	<label for="album">Album</label>
+	<select name="track[album_id]" id="album">
+		<option disabled <%= track.album_id ? '' : 'selected'%>
+		>--PLEASE SELECT--</option>
+		<% Album.all.each do |album| %>
+			<option <%= track.album_id == album.id ? 'selected' : '' %>
+			value="<%=album.id%>"><%= album.title %></option>
+		<% end %>
+	</select>
+
+	<label for="title">Title</label>
+	<input type="text" name="track[title]" id="title" value="<%=track.title%>">
+
+	<label for="ord">Ord</label>
+	<input type="text" name="track[ord]" id="ord" value="<%=track.ord%>">
+
+	<label for="bonus">Bonus?</label>
+	<input <%= track.bonus == true ? 'checked' : '' %>
+	type="radio" name="track[bonus]" id="bonus"> True
+	<input <%= track.bonus == false ? 'checked' : '' %>
+	type="radio" name="track[bonus]" id="bonus"> False
+
+	<br>
+
+	<label for="lyrics">Lyrics</label>
+	<textarea name="track[lyrics]" id="lyrics" cols="30"
+	rows="10"><%= track.lyrics %></textarea>
+
+	<button type="submit"><%= button %></button>
+</form>

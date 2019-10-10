@@ -1,0 +1,13 @@
+<% action = (submit == 'create' ? bands_url : band_url(band)) %>
+
+<form action="<%=action%>" method="post">
+	<% if submit != 'create' %>
+		<input type="hidden" name="_method" value="patch">
+	<% end %>
+	<%= auth_token %>
+
+	<label for="name">Name</label>
+	<input type="text" name="band[name]" id="name" value="<%=band.name%>">
+
+	<button type="submit"><%=submit%></button>
+</form>
